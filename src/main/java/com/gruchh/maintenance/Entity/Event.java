@@ -25,11 +25,10 @@ public class Event {
             joinColumns = @JoinColumn(name = "event"),
             inverseJoinColumns = @JoinColumn(name = "worker_id"))
     private Set<Worker> workerSet;
-    @ManyToMany
-    @JoinTable(name = "event_machine",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "machine_id"))
-    private Set<Machine> machine;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "machineEvent_id")
+    private Machine machineEventOccured;
     @Enumerated(EnumType.STRING)
     private EventType eventType;
 

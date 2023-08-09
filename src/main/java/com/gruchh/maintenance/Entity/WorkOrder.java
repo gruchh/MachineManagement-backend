@@ -16,14 +16,18 @@ public class WorkOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String description;
     @Enumerated(EnumType.STRING)
     private WorkOrderType workOrderType;
     private LocalDate generationDate;
     private LocalDate deadlineDate;
-    private char priority;
-    private String description;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
     private Worker worker;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "machineWO_id")
+    private Machine machineIssue;
 
 }

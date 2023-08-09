@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,6 +23,10 @@ public class Worker {
     private String position;
     private LocalDate hireData;
     private BigDecimal salary;
+
+    @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<WorkOrder> workOrderSet;
+
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
