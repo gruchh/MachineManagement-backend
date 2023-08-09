@@ -112,7 +112,6 @@ public class HomeController {
                 .description("Verify thermocouples")
                 .workOrderType(WorkOrderType.SPECIFY_PROBLEM)
                 .generationDate(LocalDate.of(2023, 8, 15))
-                .machineIssue(machine2)
                 .worker(worker2)
                 .build();
 
