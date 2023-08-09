@@ -30,13 +30,13 @@ public class HomeController {
 
         Phone ph1 = Phone.builder()
                 .model("K500i")
-                .purchaseDate(LocalDate.of(2022, 05, 02))
+                .purchaseDate(LocalDate.of(2022, 5, 2))
                 .phoneNumber("542-984-334")
                 .build();
 
         Phone ph2 = Phone.builder()
                 .model("K320d")
-                .purchaseDate(LocalDate.of(2020, 03, 22))
+                .purchaseDate(LocalDate.of(2020, 3, 22))
                 .phoneNumber("666-555-444")
                 .build();
 
@@ -63,14 +63,14 @@ public class HomeController {
         Machine machine1 = Machine.builder()
                 .name("Driller")
                 .manufacturer("xxx")
-                .productionDate(LocalDate.of(1992, 04, 01))
+                .productionDate(LocalDate.of(1992, 4, 1))
                 .lastMainenanceDate(LocalDate.of(2023, 1, 2))
                 .build();
 
         Machine machine2 = Machine.builder()
                 .name("Milling machine")
                 .manufacturer("yyy")
-                .productionDate(LocalDate.of(1992, 04, 01))
+                .productionDate(LocalDate.of(1992, 4, 1))
                 .lastMainenanceDate(LocalDate.of(2023, 1, 2))
                 .build();
         machineRepository.saveAll(Set.of(machine1, machine2));
@@ -116,7 +116,7 @@ public class HomeController {
                 .worker(worker2)
                 .build();
 
-        workOrderRepository.saveAll(Arrays.asList(workOrder1, workOrder2, workOrder3, workOrder4));
+        workOrderRepository.saveAll(Arrays.asList(workOrder1, workOrder2, workOrder3, workOrder4, workOrder5));
 
         Event event1 = Event.builder()
                 .description("PLC stop")
