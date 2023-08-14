@@ -1,7 +1,10 @@
 package com.gruchh.maintenance.Controller;
 
 import com.gruchh.maintenance.Entity.*;
-import com.gruchh.maintenance.Repository.*;
+import com.gruchh.maintenance.Service.EventService;
+import com.gruchh.maintenance.Service.MachineService;
+import com.gruchh.maintenance.Service.WorkOrderService;
+import com.gruchh.maintenance.Service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -20,10 +23,10 @@ import java.util.Set;
 @RestController
 public class HomeController {
 
-    private final WorkerRepository workerRepository;
-    private final WorkOrderRepository workOrderRepository;
-    private final EventRepository eventRepository;
-    private final MachineRepository machineRepository;
+    private final WorkerService workerService;
+    private final WorkOrderService workOrderService;
+    private final EventService eventService;
+    private final MachineService machineService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void runOnStart() {
@@ -58,7 +61,7 @@ public class HomeController {
                 .phone(ph2)
                 .build();
 
-        workerRepository.saveAll(Arrays.asList(worker1, worker2));
+        workerService.saveWorkers(Arrays.asList(worker1, worker2));
 
         Machine machine1 = Machine.builder()
                 .name("Driller")
@@ -73,7 +76,7 @@ public class HomeController {
                 .productionDate(LocalDate.of(1992, 4, 1))
                 .lastMainenanceDate(LocalDate.of(2023, 1, 2))
                 .build();
-        machineRepository.saveAll(Set.of(machine1, machine2));
+        machineService.saveMachines(Arrays.asList(machine1, machine2));
 
         WorkOrder workOrder1 = WorkOrder.builder()
                 .machineIssue(machine1)
@@ -115,7 +118,7 @@ public class HomeController {
                 .worker(worker2)
                 .build();
 
-        workOrderRepository.saveAll(Arrays.asList(workOrder1, workOrder2, workOrder3, workOrder4, workOrder5));
+        workOrderService.saveWorkOrders(Arrays.asList(workOrder1, workOrder2, workOrder3, workOrder4, workOrder5));
 
         Event event1 = Event.builder()
                 .description("PLC stop")
@@ -133,6 +136,6 @@ public class HomeController {
                 .workerSet(Set.of(worker1, worker2))
                 .build();
 
-        eventRepository.saveAll(Set.of(event1, event2));
+        eventService.saveEvents(Arrays.asList(event1, event2));
     }
 }
